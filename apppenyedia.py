@@ -7,7 +7,7 @@ from clientlogin import token_required
 
 COST_OF_LIVING_NYC = 1427.60
 
-@app.route('/getlivingcost/<citypick>')
+@app.route('/get-living-cost/<citypick>')
 @token_required
 def getLivingCostFromCity(citypick):
     try:
@@ -32,7 +32,7 @@ def getLivingCostFromCity(citypick):
         conn.close()
 
 
-@app.route('/getrentcost/<citypick>')
+@app.route('/get-rent-cost/<citypick>')
 @token_required
 def getRentCostFromCity(citypick):
     try:
@@ -57,7 +57,7 @@ def getRentCostFromCity(citypick):
         conn.close()
 
 
-@app.route('/getgroceriescost/<citypick>')
+@app.route('/get-groceries-cost/<citypick>')
 @token_required
 def getGroceriesCostFromCity(citypick):
     try:
@@ -82,7 +82,7 @@ def getGroceriesCostFromCity(citypick):
         conn.close()
 
 
-@app.route('/getrestaurantcost/<citypick>')
+@app.route('/get-restaurant-cost/<citypick>')
 @token_required
 def getRestaurantCostFromCity(citypick):
     try:
@@ -107,7 +107,7 @@ def getRestaurantCostFromCity(citypick):
         conn.close()
 
 
-@app.route('/getpowercost/<citypick>')
+@app.route('/get-power-cost/<citypick>')
 @token_required
 def getPowerCostFromCity(citypick):
     try:

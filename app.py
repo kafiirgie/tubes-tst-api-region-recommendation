@@ -1,13 +1,12 @@
-import pymysql
-import secrets
 from appflask import app
 from config import mysql
+import apppenyedia
+
 from flask import jsonify, flash, request, make_response
 from functools import wraps
 from urllib.request import urlopen
 import requests
 import json
-import apppenyedia
 
 
 @app.route('/')
@@ -24,7 +23,7 @@ def cobaaja():
     response = requests.get(url).json()    
     token = response['token']
 
-    url = 'https://wakacipuy.my.id/region-recommendation/getlivingcost/Munich?token=' + str(token)
+    url = 'https://wakacipuy.my.id/region-recommendation/get-living-cost/Munich?token=' + str(token)
     data_response = urlopen(url)
     data_json = json.loads(data_response.read())
     
