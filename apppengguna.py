@@ -63,13 +63,11 @@ def get_token_by_login():
     token = response['token']
     return token
 
-# http://127.0.0.1:5000/get-recomm-by-job
 @app.route('/get-recomm-by-job/')
 def get_recomm_by_job_index():
     response = {"usage1" : "/<job_role>", "usage2" : "/<job_role_first>/<job_role_last>"}
     return jsonify(response)
 
-# http://127.0.0.1:5000/get-recomm-by-job/Software
 @app.route('/get-recomm-by-job/<rolefirst>')
 def get_recomm_by_job_using_single_role(rolefirst):
     # GET REGION DATA
@@ -104,7 +102,6 @@ def get_recomm_by_job_using_single_role(rolefirst):
     
     return jsonify(list_view_data[0:5])
 
-# http://127.0.0.1:5000/get-recomm-by-job/Software/a
 @app.route('/get-recomm-by-job/<rolefirst>/<rolelast>')
 def get_recomm_by_job_using_double_role(rolefirst, rolelast):
     # GET REGION DATA
@@ -146,14 +143,15 @@ def get_recomm_by_living_cost_index():
     # category ny high sama low
     return jsonify(response)
 
-@app.route('/get-recomm-by-living-cost/<categorylivingcost>')
-# category ny cuma ada 2, medium-high : index >= 70.05 sama medium-low : index < 70.05
-# category ny cuma ada 2, medium-high : cost >= 1000usd sama medium-low : index < 1000usd
 def high_living_cost(dic):
     return dic['living_cost_in_usd'] >= 1000
+
 def low_living_cost(dic):
     return dic['living_cost_in_usd'] < 1000
+
+@app.route('/get-recomm-by-living-cost/<categorylivingcost>')
 def get_recomm_by_living_cost(categorylivingcost):
+    # category ny cuma ada 2, medium-high : cost >= 1000usd sama medium-low : index < 1000usd
     list_city_livingcost = get_city_with_livingcost_in_germany()
     if categorylivingcost == "high":
         list = [d for d in list_city_livingcost if high_living_cost(d)]
