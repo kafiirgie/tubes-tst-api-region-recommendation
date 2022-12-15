@@ -95,9 +95,10 @@ def get_recomm_by_job_using_single_role(rolefirst):
         else:
             vacation_days = 0
         # Create Data Dictionary
-        data = {"job" : rolefirst, "city" : city, "salary_in_usd" : salary, "vacation_days" : vacation_days}
-        # Append
-        list_view_data.append(data)
+        if salary != 0 and vacation_days != 0:
+            data = {"job" : rolefirst, "city" : city, "salary_in_usd" : salary, "vacation_days" : vacation_days}
+            # Append
+            list_view_data.append(data)
     list_view_data = sorted(list_view_data, key=lambda i: (i["salary_in_usd"], i["vacation_days"]), reverse=True)
     
     return jsonify(list_view_data[0:5])
@@ -129,10 +130,11 @@ def get_recomm_by_job_using_double_role(rolefirst, rolelast):
         else:
             vacation_days = 0
         # Create Data Dictionary
-        job = rolefirst + " " + rolelast
-        data = {"job" : job, "city" : city, "salary_in_usd" : salary, "vacation_days" : vacation_days}
-        # Append
-        list_view_data.append(data)
+        if salary != 0 and vacation_days != 0:
+            job = rolefirst + " " + rolelast
+            data = {"job" : job, "city" : city, "salary_in_usd" : salary, "vacation_days" : vacation_days}
+            # Append
+            list_view_data.append(data)
     list_view_data = sorted(list_view_data, key=lambda i: (i["salary_in_usd"], i["vacation_days"]), reverse=True)
 
     return jsonify(list_view_data[0:5])
@@ -253,7 +255,8 @@ def get_recomm_by_all_using_double_role(categorylivingcost, rolefirst, rolelast)
             vacation_days = 0
         # Create Data Dictionary
         if salary != 0 and vacation_days != 0:
-            data = {"job" : rolefirst, "city" : city, "living_cost_in_usd" : living_cost,"salary_in_usd" : salary, "vacation_days" : vacation_days}
+            job = rolefirst + " " + rolelast
+            data = {"job" : job, "city" : city, "living_cost_in_usd" : living_cost,"salary_in_usd" : salary, "vacation_days" : vacation_days}
             # Append
             list_view_data.append(data)
     
@@ -340,7 +343,8 @@ def get_info_city_job_using_double_role(city, rolefirst, rolelast):
         else:
             vacation_days = 0
         # Create Data Dictionary
-        data = {"job" : rolefirst + " " + rolelast, "city" : city, "living_cost_in_usd" : living_cost, "salary_in_usd" : salary, "vacation_days" : vacation_days}
+        job = rolefirst + " " + rolelast
+        data = {"job" : job, "city" : city, "living_cost_in_usd" : living_cost, "salary_in_usd" : salary, "vacation_days" : vacation_days}
     else:
         return "ERROR"
     return jsonify(data)
