@@ -1,6 +1,7 @@
 from appflask import app
 from config import mysql
 import apppenyedia
+import apppengguna
 
 from flask import jsonify, flash, request, make_response
 from functools import wraps
@@ -20,7 +21,7 @@ def index():
 def cobaaja():
 
     url = 'http://clientrofif:clientrofif@wakacipuy.my.id/region-recommendation/login'
-    response = requests.get(url).json()    
+    response = requests.get(url).json()
     token = response['token']
 
     url = 'https://wakacipuy.my.id/region-recommendation/get-living-cost/Munich?token=' + str(token)

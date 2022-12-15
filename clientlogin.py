@@ -7,8 +7,6 @@ import datetime
 from appflask import app
 from config import mysql
 
-app.config['SECRET_KEY'] = "kafiirgie"
-
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
