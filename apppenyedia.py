@@ -8,7 +8,7 @@ from clientlogin import token_required
 COST_OF_LIVING_NYC = 1427.60
 
 @app.route('/get-living-cost/<citypick>')
-# @token_required
+@token_required
 def getLivingCostFromCity(citypick):
     try:
         conn = mysql.connect()

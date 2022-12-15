@@ -28,7 +28,7 @@ def token_required(f):
 def login():
     auth = request.authorization
     if auth and isLoginValid(auth.username, auth.password) == True:
-        token = jwt.encode({'user': auth.username, 'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=7)}, app.config['SECRET_KEY'])
+        token = jwt.encode({'user': auth.username, 'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, app.config['SECRET_KEY'])
 
         return jsonify({'token': token.encode().decode('UTF-8')})
 
